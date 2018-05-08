@@ -1,0 +1,19 @@
+.form-container{
+    width:250px;
+    margin:0 auto;
+}
+.page-title{
+    text-align:center;
+}
+
+.main{
+	background:#FFFFFF;
+	width:800px;
+	margin:0 auto;
+	overflow:hidden;
+	border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(26,26,26,.1);
+    box-sizing: border-box;
+    padding: 16px 20px;
+
+}

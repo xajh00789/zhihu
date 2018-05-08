@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{%block title%}
+	个人信息首页
+{%endblock%}
+
+{%block head%}
+<link rel="stylesheet" href="{{url_for('static',filename='css/persionalInform.css')}}">
+{%endblock%}
+
+{%block main%}
+<div class="main2" style="width:900px; height:300px;">
+	{%if image%}
+		<img src="{{url_for('static',filename=image)}}" style="width: 100%;height: 100%;object-fit:cover;">
+	{%endif%}
+</div>
+<div class="main" style="position:relative; left:-119px;width:900px; height:200px;">
+	<ul>
+		<li>
+			 <div class="avatar-group">
+				<img src="{{url_for('static',filename=touxiang)}}" style="margin-left:-55px;margin-bottom:5px;" alt="" class="avatar">
+			</div>
+			<div class="detail" style="color: #8590a6;position:relative; top:2px;">
+				{%if user.sex%}
+					<p>性别：{{user.sex}}</p>
+				{%endif%}
+				{%if user.self_introduce%}
+				<p>一句话介绍:{{user.self_introduce}}</p>
+				{%endif%}
+				{%if user.liveplace%}
+				<p>居住地：{{user.liveplace}}</p>
+				{%endif%}
+				{%if user.job%}
+				<p>职业：{{user.job}}</p>
+				{%endif%}
+				{%if user.xueli%}
+				<p>学历：{{user.xueli}}</p>
+				{%endif%}
+			</div>
+			<div class="container" style="position:relative; top:-157px;left:450px;">
+				<div class="row">
+					<div class="col-md-4">
+						{{ wtf.quick_form(form, enctype='multipart/form-data') }}
+					</div>
+				</div>
+			</div>
+			<div  class="form-group" style="text-align:right;position:relative; top:-145px;left:-115px;">
+				<a href="{{url_for('persionalInform_edit')}}"><button class="btn btn-primary">修改资料</button></a>
+			</div>
+
+		</li>
+	</ul>
+</div>
+
+
+<div class="main" style="position:relative; left:-245px;width:650px; height:80px;margin-top: 5px;">
+	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	  <ul class="nav navbar-nav">
+		<li style="margin-left:65px"><a style="color:#777;"  href="{{url_for('persional_question',username=user.username)}}">提问</a></li>
+		<li style="margin-left:65px"><a style="color:#777;"  href="{{url_for('personal_answer',username=user.username)}}">回答</a></li>
+		<li style="margin-left:65px"><a style="color:#777;"  href="{{url_for('personal_article',username=user.username)}}">文章</a></li>
+		  <li style="margin-left:65px"><a style="color:#777;"  href="#">评论</a></li>
+		  </ul>
+	</div>
+</div>
+
+
+<div class="main" style="position:relative; left:210px;width:240px; height:200px;margin-top: -80px;">
+	<p>个人成就</p>
+</div>
+
+
+
+
+{%endblock%}

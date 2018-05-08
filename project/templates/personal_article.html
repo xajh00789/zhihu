@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{%block title%}
+	个人信息首页
+{%endblock%}
+
+{%block head%}
+<link rel="stylesheet" href="{{url_for('static',filename='css/persionalInform.css')}}">
+{%endblock%}
+
+{%block main%}
+<div class="main2" style="width:900px; height:300px;">
+	{%if image%}
+		<img src="{{url_for('static',filename=image)}}" style="width: 100%;height: 100%;object-fit:cover;">
+	{%endif%}
+</div>
+<div class="main">
+	<ul>
+		<li>
+			 <div class="avatar-group">
+				<img src="{{url_for('static',filename=touxiang)}}" style="margin-left:-12px;margin-bottom:5px;" alt="" class="avatar">
+			</div>
+			<div class="detail" style="color: #8590a6;position:relative; top:2px;">
+				{%if user2.sex%}
+					<p>性别：{{user2.sex}}</p>
+				{%endif%}
+				{%if user2.self_introduce%}
+				<p>一句话介绍:{{user2.self_introduce}}</p>
+				{%endif%}
+				{%if user2.liveplace%}
+				<p>居住地：{{user2.liveplace}}</p>
+				{%endif%}
+				{%if user2.job%}
+				<p>职业：{{user2.job}}</p>
+				{%endif%}
+				{%if user2.xueli%}
+				<p>学历：{{user2.xueli}}</p>
+				{%endif%}
+			</div>
+		</li>
+	</ul>
+</div>
+
+<div class="row">
+
+
+	<div class="col-lg-8">
+		<div class="main" style="position:relative;width:650px; height:60px;margin-top: 5px;">
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			  <ul class="nav navbar-nav">
+				<li style="margin-left:65px"><a style="color:#777;"  href="{{url_for('persional_question',username=user2.username)}}">提问</a></li>
+				<li style="margin-left:65px"><a style="color:#777;"  href="{{url_for('personal_answer',username=user2.username)}}">回答</a></li>
+				<li style="margin-left:65px"><a style="color:#777;"  href="{{url_for('personal_article',username=user2.username)}}">文章</a></li>
+				  <li style="margin-left:65px"><a style="color:#777;"  href="#">评论</a></li>
+				  </ul>
+			</div>
+		</div>
+
+
+		{%for article in articles%}
+		<div class="main" style="position:relative;width:650px;margin-top:5px;height:140px;">
+			<div style="margin-top:5px;">
+			<h2>
+				<div>
+					<a href="{{url_for('detail',question_id=article.id)}}" style="font-size: 18px;font-weight: 600;font-synthesis: style;line-height: 1.6;color: #1a1a1a;margin-top:1px;margin-bottom:1px;">{{article.title}}</a>
+					{%if article.author==user%}
+					<form action="{{url_for('article_edit')}}" method="post">
+							<div class="form-group">
+								<input type="hidden" name="article_id" value="{{article.id}}">
+							</div>
+							<div class="form-group" >
+								<button style="float:left;" type="button" class="btn btn-default">编辑</button>
+							</div>
+					</form>
+					{%endif%}
+				</div>
+			</h2>
+
+			<div  style="margin-top:-5px;">
+					<a>
+						<span style="float:right;margin-top: 10px;font-size: 14px;color: #8590a6;">{{article.create_time}}</span>
+					</a>
+			</div>
+			</div>
+		</div>
+		{%endfor%}
+
+	</div>
+
+	<ul class="list3 col-lg-3" style="position:relative:;margin-left:-120px;margin-top:5px;">
+            <li class="list-item3" >
+                <div class="user">
+                   <div class="content" style="height:253px;">
+                        <div class="row" style="margin-left:-10px;">
+                          <div class="col-sm-7 col-md-6">
+                            <div class="thumbnail">
+                              <img src="{{url_for('static',filename='uploads/'+user2.telephone+'头像.jpg')}}" alt="" class="avatar2" style="">
+                                  <div class="caption">
+                                    <h5>{{user2.username}}</h5>
+                                  </div>
+                            </div>
+                          </div>
+                        </div>
+                       <h5>{{user2.self_introduce}}</h5>
+                   </div>
+                </div>
+            </li>
+            <div style="clear:both;"></div>
+            <li class="list-item3" style="margin-top:8px;">
+                <div class="user">
+                   <div class="content" style="height:140px;">
+                       <div class="list-group">
+                          <a href="{{url_for('personal_article',username=user2.username)}}" class="list-group-item"><span class="badge">{{article_num}}</span>我的文章</a>
+                          <a href="{{url_for('persional_question',username=user2.username)}}" class="list-group-item"><span class="badge">{{question_num}}</span>我的提问</a>
+                          <a href="{{url_for('personal_answer',username=user2.username)}}" class="list-group-item"><span class="badge">{{answer_num}}</span>我的回答</a>
+                        </div>
+                   </div>
+                </div>
+            </li>
+            <div style="clear:both;"></div>
+            <li class="list-item3" style="margin-top:8px;">
+                <div class="user">
+                   <div class="content" style="height:293px;">
+                       <p>头像中心</p>
+                   </div>
+                </div>
+            </li>
+        </ul>
+
+</div>
+{%endblock%}

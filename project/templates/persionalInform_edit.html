@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title%}个人资料编辑页{%endblock%}
+
+{%block head%}
+<link rel="stylesheet" href="{{url_for('static',filename='css/persionalInform_edit.css')}}">
+{%endblock%}
+
+{%block main%}
+<div class="main" style="position:relative; left:-165px;height:1200px;">
+
+<h3 class="page-title" style="text-align: center;position:relative;margin-left:-40px;margin-top:29px;">个人资料修改</h3>
+<div class="avatar-group" style="position:relative; left:265px;margin-top:5px;">
+	{%if image%}
+		<img src="{{ url_for('static', filename=image) }}" class="avatar">
+	{%endif%}
+</div>
+
+
+<div class="container" style="position:relative; top:175px;left:90px;">
+    <div class="row">
+        <div class="col-md-4">
+            {{ wtf.quick_form(form, enctype='multipart/form-data') }}
+        </div>
+    </div>
+</div>
+
+<form action="" method="POST" style="position:relative; top:-870px;">
+    <div class="form-container" style="margin-left:13px;">
+        <div class="form-group" style="position:relative;top:-10px;">
+            <h4>用户名</h4>
+            <input type="text" class="form-control" placeholder="用户名" name="username">
+        </div>
+        <div class="form-group" style="position:relative;top:10px;">
+            <h4>性别</h4>
+            <input type="text" class="form-control" placeholder="性别" name="sex">
+        </div>
+        <div class="form-group" style="position:relative;top:40px;">
+            <h4>一句话自我介绍</h4>
+            <input type="text" class="form-control" placeholder="一句话自我介绍" name="self-introduce">
+        </div>
+        <div class="form-group" style="position:relative;top:70px;">
+            <h4>居住地</h4>
+            <input type="text" class="form-control" placeholder="居住地" name="liveplace">
+        </div>
+        <div class="form-group" style="position:relative;top:100px;">
+            <h4>职业</h4>
+            <input type="text" class="form-control" placeholder="职业" name="job">
+        </div>
+        <div class="form-group" style="position:relative;top:130px;">
+            <h4>学历</h4>
+            <input type="text" class="form-control" placeholder="学历" name="xueli">
+        </div>
+          <div class="form-group" style="text-align:right;position:relative;top:160px;">
+                <button  class="btn btn-primary btn-block">修改</button>
+          </div>
+    </div>
+</form>
+
+</div>
+{%endblock%}

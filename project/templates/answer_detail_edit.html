@@ -1,0 +1,29 @@
+{%extends 'base.html'%}
+
+{% block title %}
+回答编写
+{%endblock%}
+
+{%block head%}
+<link rel="stylesheet" href="{{url_for('static',filename='css/article.css')}}">
+{%endblock%}
+
+{%block main%}
+<h3 class="page-title">回答问题</h3>
+<form action="" method="post">
+<div class="form-container">
+<div class="form-group">
+    <p style="text-align:center;margin-top:25px;font-size:16px;color: #8590a6;">{{title}}</p>
+</div>
+<div class="form-group">
+	<textarea name="content" rows="10" placeholder="请在此写出您对该问题的看法" class="form-control" >
+	</textarea>
+</div>
+<div class="form-group">
+	<button class="btn btn-primary">提交回答</button>
+</div>
+
+</div>
+</div>
+</form>
+{%endblock%}
